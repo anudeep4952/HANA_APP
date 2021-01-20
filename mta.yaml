@@ -1,0 +1,57 @@
+ID: demo
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: demo
+    type: hdb
+    path: demo
+    requires:
+      - name: hdi_demo
+  - name: demo_ui5
+    type: html5
+    path: demo_ui5
+    parameters:
+      disk-quota: 512M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa-service
+      - name: demo_node_api
+        group: destinations
+        properties:
+          name: core-xsjs-backend
+          url: '~{url}'
+          forwardAuthToken: true
+      - name: hdi_demo
+      - name: demo
+  - name: demo_node
+    type: nodejs
+    path: demo_node
+    provides:
+      - name: demo_node_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_demo
+      - name: uaa-service
+      - name: demo
+resources:
+  - name: hdi_demo
+    parameters:
+      config:
+        schema: demo
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: uaa-service
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: com.sap.xs.uaa
+  - name: dest_demo
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service

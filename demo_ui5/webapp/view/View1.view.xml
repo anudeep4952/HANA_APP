@@ -1,0 +1,46 @@
+<mvc:View controllerName="demo_ui5.demo_ui5.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						
+						<Table id="idProductsTable1" inset="false" items="{d/results}">
+											<columns>
+							
+												<Column  minScreenWidth="Tablet"
+														demandPopin="true">
+													<Text text= "Question Text"/>
+												</Column>
+												<Column  minScreenWidth="Tablet"
+														demandPopin="true">
+													<Text text="Response Text"/>
+												</Column>
+												<Column  minScreenWidth="Tablet"
+														demandPopin="true" >
+													<Text text="Created By"/>
+												</Column>
+												<Column  minScreenWidth="Tablet"
+														demandPopin="true" >
+													<Text text="Changed By" />
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem type="Navigation"
+													press=".onSelect">
+													<cells>
+														<Text text="{prod_id}"/>
+														<Text text="{product_name}"/>
+														<Text text="{item}"/>
+														<Text text="{supp_name}"/>
+													
+													</cells>
+												</ColumnListItem>
+										</items>
+									</Table>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,26 @@
+{
+  "welcomeFile": "/demo_ui5/index.html",
+  "authenticationMethod": "route",
+  "routes": [{
+  "source": "(.*)(.xsjs)",
+  "destination": "core-xsjs-backend",
+  "csrfProtection": false,
+  "authenticationType": "xsuaa"
+},
+
+{
+	  "source": "^/xsjs/(.*)",
+	  "target": "/$1",
+	  "destination": "web_api_xs"
+},
+
+
+{
+  "source": "(.*)(.xsodata)",
+  "destination": "core-xsjs-backend",
+  "authenticationType": "xsuaa"
+
+}
+    
+  ]
+}

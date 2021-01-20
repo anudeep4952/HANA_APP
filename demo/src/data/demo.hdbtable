@@ -1,0 +1,6 @@
+column table "crud"(
+	"prod_id" integer primary key,
+	"product_name" nvarchar(10),
+	"item" nvarchar(10),
+	"supp_name" nvarchar(10)
+)
